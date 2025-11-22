@@ -4,7 +4,7 @@
 */
 
 import * as THREE from 'three'
-import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei' 
 import type { GLTF } from 'three-stdlib'
 import type { JSX } from 'react'
 
@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function ES({children, ...props}: JSX.IntrinsicElements['group']) {
+export function ES(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/4performance-tip/ES.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -31,9 +31,9 @@ export function ES({children, ...props}: JSX.IntrinsicElements['group']) {
           material={nodes.ES001.material}
           userData={{ name: 'ES.001' }}
         >
-          {props.clear ? <MeshTransmissionMaterial roughness={0.3} transmission={0.2} resolution={32} samples={1} /> : <meshStandardMaterial />}
+          {props.secondary}
         </mesh>
-        {children}
+        {props.children}
       </mesh>
     </group>
   )

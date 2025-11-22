@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Poison(props: JSX.IntrinsicElements['group']) {
+export function Poison(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/poison.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -24,7 +24,9 @@ export function Poison(props: JSX.IntrinsicElements['group']) {
           geometry={nodes.poison.geometry}
           material={nodes.poison.material}
           userData={{ name: 'poison' }}
-        />
+        >
+          {props.children}
+        </mesh>
         <group
           name="attach_bolt"
           position={[0, 2.908, 0]}

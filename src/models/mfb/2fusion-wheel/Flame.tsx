@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Flame(props: JSX.IntrinsicElements['group']) {
+export function Flame(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/flame.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -34,7 +34,7 @@ export function Flame(props: JSX.IntrinsicElements['group']) {
           position={[0, -1.982, 0]}
           userData={{ name: 'attach_ring' }}
         />
-        <meshStandardMaterial/>
+        {props.children}
       </mesh>
     </group>
   )

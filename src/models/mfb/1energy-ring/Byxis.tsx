@@ -14,11 +14,13 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Byxis(props: JSX.IntrinsicElements['group']) {
+export function Byxis(props: JSX.IntrinsicElements['group']& { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/byxis.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
-      <mesh name="byxis" geometry={nodes.byxis.geometry} material={nodes.byxis.material} />
+      <mesh name="byxis" geometry={nodes.byxis.geometry} material={nodes.byxis.material}>
+        {props.children}
+      </mesh>
     </group>
   )
 }

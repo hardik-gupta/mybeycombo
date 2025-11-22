@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Eagle(props: JSX.IntrinsicElements['group']) {
+export function Eagle(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/eagle.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -25,7 +25,7 @@ export function Eagle(props: JSX.IntrinsicElements['group']) {
         material={nodes.eagle.material}
         userData={{ name: 'eagle' }}
       >
-        <MeshTransmissionMaterial roughness={0.3} transmission={0.2} resolution={32}/>
+        {props.children}
       </mesh>
     </group>
   )

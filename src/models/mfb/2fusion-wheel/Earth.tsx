@@ -6,7 +6,7 @@
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-import type { JSX } from 'react'
+import { type JSX } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,26 +15,28 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Earth(props: JSX.IntrinsicElements['group']) {
+export function Earth(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/earth.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-        <mesh
-          name="earth"
-          geometry={nodes.earth.geometry}
-          material={nodes.earth.material}
-          userData={{ name: 'earth' }}
-        />
-        <group
-          name="attach_bolt"
-          position={[0, 2.908, 0]}
-          userData={{ name: 'attach_bolt' }}
-        />
-        <group
-          name="attach_ring"
-          position={[0, -1.952, 0]}
-          userData={{ name: 'attach_ring' }}
-        />
+      <mesh
+        name="earth"
+        geometry={nodes.earth.geometry}
+        material={nodes.earth.material}
+        userData={{ name: 'earth' }}
+      >
+        {props.children}
+      </mesh>
+      <group
+        name="attach_bolt"
+        position={[0, 2.908, 0]}
+        userData={{ name: 'attach_bolt' }}
+      />
+      <group
+        name="attach_ring"
+        position={[0, -1.952, 0]}
+        userData={{ name: 'attach_ring' }}
+      />
     </group>
   )
 }

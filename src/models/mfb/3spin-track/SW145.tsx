@@ -4,7 +4,7 @@
 */
 
 import * as THREE from 'three'
-import { type JSX } from 'react'
+import { Children, type JSX } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 
@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function SW145(props: JSX.IntrinsicElements['group']) {
+export function SW145(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/3spin-track/SW145.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -31,7 +31,10 @@ export function SW145(props: JSX.IntrinsicElements['group']) {
           material={nodes.wing.material}
           position={[0, -8.038, 0]}
           userData={{ name: 'wing' }}
-        />
+        >
+          {props.secondary}
+        </mesh>
+        {props.children}
         <group name="attach_tip" position={[0, -11, 0]} userData={{ name: 'attach_tip' }} />
         <group name="attach_wheel" userData={{ name: 'attach_wheel' }} />
       </mesh>

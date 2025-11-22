@@ -4,7 +4,7 @@
 */
 
 import * as THREE from 'three'
-import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { JSX } from 'react'
 
@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
     materials: {}
 }
 
-export function Libra(props: JSX.IntrinsicElements['group']) {
+export function Libra(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/libra.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -25,8 +25,7 @@ export function Libra(props: JSX.IntrinsicElements['group']) {
         material={nodes.libra.material}
         userData={{ name: 'libra' }}
       >
-        <MeshTransmissionMaterial samples={1} resolution={128} transmission={0.3} roughness={0.3} />
-        {/* <meshStandardMaterial roughness={0.1}/> */}
+        {props.children}
       </mesh>
     </group>
   )

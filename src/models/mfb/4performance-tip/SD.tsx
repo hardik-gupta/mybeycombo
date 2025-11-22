@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function SD({children, ...props}: JSX.IntrinsicElements['group']) {
+export function SD(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/4performance-tip/SD.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -25,7 +25,7 @@ export function SD({children, ...props}: JSX.IntrinsicElements['group']) {
         material={nodes.SD.material}
         userData={{ name: 'SD' }}
       >
-        {children}
+        {props.children}
       </mesh>
     </group>
   )
