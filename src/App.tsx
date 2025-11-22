@@ -3,7 +3,6 @@ import { OrbitControls, Stage, Stats } from "@react-three/drei";
 import Experience from "./Experience";
 
 export default function App() {
-  
   return (
     <Canvas
       camera={{ position: [0, 10, 40], fov: 75 }}
@@ -22,7 +21,13 @@ export default function App() {
         }}
       /> */}
       <OrbitControls />
-      <Stage shadows={true} adjustCamera={false} environment={"city"} intensity={1.0}>
+      <Stage
+        preset="rembrandt"
+        // shadows={{ type: "contact", color: "white", colorBlend: 2, opacity: 1.0 }}
+        adjustCamera={false}
+        environment={"city"}
+        intensity={1.0}
+      >
         {/* <BeybladeProvider> */}
         <Experience />
         {/* </BeybladeProvider> */}

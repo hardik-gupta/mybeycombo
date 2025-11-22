@@ -1,10 +1,14 @@
 import { folder, useControls } from "leva";
 import { ENERGY_RING } from "../metadata";
 import { useRef } from "react";
-import { MeshTransmissionMaterial } from "@react-three/drei";
+import { MeshTransmissionMaterial, useTexture } from "@react-three/drei";
 
 const EnergyRing = ({posY}:{posY: number}) => {
     const ringRef = useRef(null);
+    const [normalMap, colorMap] = useTexture([
+        "models/mfb/textures/CW_Striker_N.png", 
+        "models/mfb/textures/CW_Striker_S.png"
+    ])
     const { colorEr, clearEr, energyRing, transparency, clearCoat, resolution } = useControls({
         "Energy Ring": folder({
             colorEr: {
@@ -54,8 +58,15 @@ const EnergyRing = ({posY}:{posY: number}) => {
         <EnergyRing ref={ringRef} position={[0,posY, 0]}>
             {
                 clearEr ?
-                    <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorEr} /> :
-                    <meshStandardMaterial roughness={clearCoat} color={colorEr} />
+                    <MeshTransmissionMaterial
+                        samples={1} 
+                        resolution={resolution} 
+                        transmission={transparency} 
+                        roughness={clearCoat} 
+                        color={colorEr} 
+                        normalMap={normalMap} 
+                    /> :
+                    <meshStandardMaterial roughness={clearCoat} color={colorEr} normalMap={normalMap} />
             }
         </EnergyRing>
     )

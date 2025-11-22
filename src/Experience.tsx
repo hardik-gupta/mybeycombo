@@ -7,6 +7,7 @@ import { PerfTip } from "./models/mfb/4performance-tip/PerfTip";
 import { SpinTrack } from "./models/mfb/3spin-track/SpinTrack";
 import { FusionWheel } from "./models/mfb/2fusion-wheel/FusionWheel";
 import { EnergyRing } from "./models/mfb/1energy-ring/EnergyRing";
+import { radToDeg } from "three/src/math/MathUtils.js";
 
 // import { DG } from "./models/Dg";
 
@@ -62,18 +63,18 @@ const Experience = () => {
         })
     })
 
-    // const {position, rotation} = useControls("Transform",{
-    //     position: {
-    //         x: 0,
-    //         y: 0,
-    //         z: 0
-    //     },
-    //     rotation: {
-    //         x: 0,
-    //         y: 0,
-    //         z: 0,
-    //     }
-    // })
+    const {position, rotation} = useControls("Transform",{
+        position: {
+            x: 0,
+            y: 0,
+            z: 0
+        },
+        rotation: {
+            x: radToDeg(0),
+            y: radToDeg(0),
+            z: radToDeg(0),
+        }
+    })
 
     useEffect(() => {
         if (boltRef.current) {
@@ -88,7 +89,7 @@ const Experience = () => {
     }, [colorFb]);
 
     return (
-        <group scale={0.5} position={[0, 0, 0]}>
+        <group scale={0.5} position={[position.x, position.y, position.z]} rotation={[rotation.x, rotation.y, rotation.z]} castShadow>
             <FaceBolt ref={boltRef} position={[0, posBolt, 0]}>
                 {
                     clearFb ?

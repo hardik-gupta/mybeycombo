@@ -21,14 +21,10 @@ export function BO_ES(props: JSX.IntrinsicElements['group'] & { children?: React
     <group {...props} dispose={null}>
       <mesh
         name="BO_ES"
-        castShadow
-        receiveShadow
         geometry={nodes.BO_ES.geometry}
         material={nodes.BO_ES.material}>
         <mesh
           name="BO_SUB_ES"
-          castShadow
-          receiveShadow
           geometry={nodes.BO_SUB_ES.geometry}
           material={nodes.BO_SUB_ES.material}
         >

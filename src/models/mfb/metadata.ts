@@ -19,12 +19,14 @@ import { Gravity } from "./2fusion-wheel/Gravity";
 import { TR_145 } from "./3spin-track/TR_145";
 import { TR_T125 } from "./3spin-track/TR_T125";
 import { BO_ES } from "./4performance-tip/BO_ES";
+import { Striker } from "./1energy-ring/striker";
 
 const ENERGY_RING = {
     Libra: Libra,
     Eagle: Eagle,
     Serpent: Serpent,
-    Byxis: Byxis
+    Byxis: Byxis,
+    Striker: Striker
 } as const;
 
 const FUSION_WHEEL = {

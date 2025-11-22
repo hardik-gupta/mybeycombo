@@ -24,6 +24,7 @@ export function Earth(props: JSX.IntrinsicElements['group'] & { children?: React
         geometry={nodes.earth.geometry}
         material={nodes.earth.material}
         userData={{ name: 'earth' }}
+        castShadow
       >
         {props.children}
       </mesh>

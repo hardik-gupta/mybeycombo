@@ -23,7 +23,8 @@ export function Flame(props: JSX.IntrinsicElements['group'] & { children?: React
         name="flame"
         geometry={nodes.flame.geometry}
         material={nodes.flame.material}
-        userData={{ name: 'flame' }}>
+        userData={{ name: 'flame' }}
+      >
         <group
           name="attach_bolt"
           position={[0, 2.878, 0]}
