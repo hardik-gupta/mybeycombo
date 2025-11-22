@@ -1,29 +1,11 @@
-import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, PerformanceMonitor, Stage, Stats } from "@react-three/drei";
-import * as THREE from "three/webgpu";
+import { OrbitControls, Stage, Stats } from "@react-three/drei";
 import Experience from "./Experience";
 
 export default function App() {
-  const [frameloop, setFrameloop] = useState<"never" | "demand" | "always">("never");
   
   return (
     <Canvas
-      frameloop={frameloop}
-      gl={(canvas) => {
-        const renderer = new THREE.WebGPURenderer({
-          canvas,
-          powerPreference: "high-performance",
-          antialias: true,
-          alpha: false,
-          stencil: false,
-          shadowMap: true,
-        });
-        renderer.init().then(() => {
-          setFrameloop("always");
-        });
-        return renderer;
-      }}
       camera={{ position: [0, 10, 40], fov: 75 }}
       dpr={1}
     >
