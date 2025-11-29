@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function WD(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
+export function BO_WD(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/4performance-tip/WD.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>

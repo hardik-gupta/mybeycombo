@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { PERFORMANCE_TIPS } from "../metadata";
+import { PERFORMANCE_TIPS } from "./_metadata";
 import { MeshTransmissionMaterial } from "@react-three/drei";
 import { folder, useControls } from "leva";
 
@@ -19,11 +19,11 @@ export const PerfTip = forwardRef(function DynamicPerfTip(props: {position?: [nu
                 label: "Secondary",
                 render: (get) => {
                     const tip = get('Performance Tip.performanceTip');
-                    return tip === 'ES'|| tip === 'BO_ES';
+                    return tip === 'ES' || tip === "CS" || tip === "R2F";
                 }
             },
             performanceTip: {
-                value: "BO_ES",
+                value: "ES",
                 options: Object.keys(PERFORMANCE_TIPS),
                 label: 'Tip'
             },

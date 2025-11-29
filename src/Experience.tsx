@@ -20,6 +20,19 @@ const Experience = () => {
     const [posWheel, setPosWheel] = useState<number>(0);
     const [posTip, setPosTip] = useState<number>(0);
 
+    const {position, rotation} = useControls("Transform",{
+        position: {
+            x: 0,
+            y: 0,
+            z: 0
+        },
+        rotation: {
+            x: radToDeg(0),
+            y: radToDeg(0),
+            z: radToDeg(0),
+        }
+    })
+
     const { colorFb, clearFb, transparency, clearCoat, resolution } = useControls({
         "Face Bolt": folder({
             colorFb: {
@@ -46,9 +59,6 @@ const Experience = () => {
                 max: 1,
                 step: 0.05,
                 label: "Clear Coat",
-                render: (get) => {
-                    return get('Face Bolt.clearFb');
-                }
             },
             resolution: {
                 value: 256,
@@ -61,19 +71,6 @@ const Experience = () => {
                 }
             },
         })
-    })
-
-    const {position, rotation} = useControls("Transform",{
-        position: {
-            x: 0,
-            y: 0,
-            z: 0
-        },
-        rotation: {
-            x: radToDeg(0),
-            y: radToDeg(0),
-            z: radToDeg(0),
-        }
     })
 
     useEffect(() => {
@@ -89,12 +86,15 @@ const Experience = () => {
     }, [colorFb]);
 
     return (
-        <group scale={0.5} position={[position.x, position.y, position.z]} rotation={[rotation.x, rotation.y, rotation.z]} castShadow>
+        <group scale={0.5} 
+            position={[position.x, position.y, position.z]} rotation={[rotation.x, rotation.y, rotation.z]} 
+            // castShadow
+        >
             <FaceBolt ref={boltRef} position={[0, posBolt, 0]}>
                 {
                     clearFb ?
-                        <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorFb} /> :
-                        <meshStandardMaterial color={colorFb} roughness={resolution} />
+                        <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={1 - clearCoat} color={colorFb} /> :
+                        <meshStandardMaterial color={colorFb} roughness={1 - clearCoat} />
                 }
             </FaceBolt>
             <EnergyRing posY={posRing} />

@@ -9,7 +9,7 @@ import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
     nodes: {
-        ['230']: THREE.Mesh
+        TR_230: THREE.Mesh
     }
     materials: {}
 }
@@ -18,7 +18,7 @@ export function TR_230(props: JSX.IntrinsicElements['group'] & {children?: React
     const { nodes } = useGLTF('/models/mfb/3spin-track/TR_230.glb') as unknown as GLTFResult
     return (
         <group {...props} dispose={null}>
-            <mesh name="230" geometry={nodes['230'].geometry} material={nodes['230'].material}>
+            <mesh name="TR_230" geometry={nodes.TR_230.geometry} material={nodes.TR_230.material}>  
                 {props.children}
             </mesh>
             <group name="attach_tip" position={[0, -19.523, 0]} />

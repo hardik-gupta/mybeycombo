@@ -23,6 +23,7 @@ export default function App() {
       <OrbitControls />
       <Stage
         preset="rembrandt"
+        // shadows={false}
         // shadows={{ type: "contact", color: "white", colorBlend: 2, opacity: 1.0 }}
         adjustCamera={false}
         environment={"city"}

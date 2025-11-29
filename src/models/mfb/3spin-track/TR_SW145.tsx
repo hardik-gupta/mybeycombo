@@ -4,27 +4,28 @@
 */
 
 import * as THREE from 'three'
-import { Children, type JSX } from 'react'
+import { type JSX } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    SW145: THREE.Mesh
+    TR_SW145: THREE.Mesh
     wing: THREE.Mesh
   }
   materials: {}
 }
 
-export function SW145(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode}) {
-  const { nodes } = useGLTF('/models/mfb/3spin-track/SW145.glb') as unknown as GLTFResult
+export function TR_SW145(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode}) {
+  const { nodes } = useGLTF('/models/mfb/3spin-track/TR_SW145.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh
         name="SW145"
-        geometry={nodes.SW145.geometry}
-        material={nodes.SW145.material}
-        userData={{ name: 'SW145' }}>
+        geometry={nodes.TR_SW145.geometry}
+        material={nodes.TR_SW145.material}
+        userData={{ name: 'SW145' }}
+      >
         <mesh
           name="wing"
           geometry={nodes.wing.geometry}
@@ -42,4 +43,4 @@ export function SW145(props: JSX.IntrinsicElements['group'] & {children?: React.
   )
 }
 
-useGLTF.preload('/models/mfb/3spin-track/SW145.glb')
+useGLTF.preload('/models/mfb/3spin-track/TR_SW145.glb')

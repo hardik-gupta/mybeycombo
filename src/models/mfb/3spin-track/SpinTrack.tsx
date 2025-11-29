@@ -1,5 +1,5 @@
 import { MeshTransmissionMaterial } from "@react-three/drei";
-import { SPIN_TRACKS } from "../metadata";
+import { SPIN_TRACKS } from "./_metadata";
 import { useEffect, useRef, type SetStateAction, type Dispatch } from "react";
 import { folder, useControls } from "leva";
 import * as THREE from "three";
@@ -18,14 +18,14 @@ export const SpinTrack = ({setPosWheel, setPosTip}: {setPosWheel:  Dispatch<SetS
             },
             colorSt2: {
                 value: "orange",
-                label: "Color",
+                label: "Secondary",
                 render: (get) => {
                     const track = get('Spin Track.spinTrack');
                     return track === 'SW145';
                 }
             },
             spinTrack: {
-                value: "TRT125",
+                value: "T125",
                 options: Object.keys(SPIN_TRACKS),
                 label: 'Track'
             },
