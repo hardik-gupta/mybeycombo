@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Poison(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
+export function MW_Poison(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/poison.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

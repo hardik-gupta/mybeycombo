@@ -6,8 +6,21 @@ import * as THREE from "three";
 
 export const SpinTrack = ({setPosWheel, setPosTip}: {setPosWheel:  Dispatch<SetStateAction<number>>, setPosTip:  Dispatch<SetStateAction<number>>}) => {
     const trackRef = useRef(null);
-    const { clearSt, colorSt1, colorSt2, spinTrack, transparency, clearCoat, resolution } = useControls({
+    const { clearSt, colorSt1, colorSt2, spinTrack, transparency, clearCoat, resolution, mode } = useControls({
         "Spin Track": folder({
+            spinTrack: {
+                value: "T125",
+                options: Object.keys(SPIN_TRACKS),
+                label: 'Track'
+            },
+            mode: {
+                value: "",
+                options: Object.keys(SPIN_TRACKS[spinTrack as keyof typeof SPIN_TRACKS].mode),
+                label: "Mode",
+                render: () :boolean => {
+                    return SPIN_TRACKS[spinTrack as keyof typeof SPIN_TRACKS].mode.length > 0;
+                }
+            },
             clearSt: {
                 value: false,
                 label: "Clear?",
@@ -21,13 +34,8 @@ export const SpinTrack = ({setPosWheel, setPosTip}: {setPosWheel:  Dispatch<SetS
                 label: "Secondary",
                 render: (get) => {
                     const track = get('Spin Track.spinTrack');
-                    return track === 'SW145';
+                    return track === 'SW145' || track === "BD145";
                 }
-            },
-            spinTrack: {
-                value: "T125",
-                options: Object.keys(SPIN_TRACKS),
-                label: 'Track'
             },
             transparency: {
                 value: 0.2,
@@ -58,7 +66,7 @@ export const SpinTrack = ({setPosWheel, setPosTip}: {setPosWheel:  Dispatch<SetS
             },
         }),
     })
-    const SpinTrack = SPIN_TRACKS[spinTrack as keyof typeof SPIN_TRACKS];
+    const SpinTrack = SPIN_TRACKS[spinTrack as keyof typeof SPIN_TRACKS].component;
     
     useEffect(() => {
         if (trackRef.current) {
@@ -76,16 +84,36 @@ export const SpinTrack = ({setPosWheel, setPosTip}: {setPosWheel:  Dispatch<SetS
 
     return (
         <SpinTrack ref={trackRef}
+            mode = {mode}
             secondary={
                 clearSt ? 
-                <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorSt2}/> : 
-                <meshStandardMaterial roughness={clearCoat} color={colorSt2}/>
+                <MeshTransmissionMaterial 
+                    samples={1} 
+                    resolution={resolution} 
+                    transmission={transparency} 
+                    roughness={clearCoat}
+                    color={colorSt2}
+                    thickness={0.5}
+                /> : 
+                <meshStandardMaterial 
+                    roughness={clearCoat} 
+                    color={colorSt2}
+                />
             }
         >
             {
                 clearSt ?
-                    <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorSt1} /> :
-                    <meshStandardMaterial roughness={clearCoat} color={colorSt1} />
+                    <MeshTransmissionMaterial 
+                        samples={1} 
+                        resolution={resolution} 
+                        transmission={transparency} 
+                        roughness={clearCoat} 
+                        color={colorSt1} 
+                    /> :
+                    <meshStandardMaterial 
+                        roughness={clearCoat} 
+                        color={colorSt1} 
+                    />
             }
         </SpinTrack>
     )

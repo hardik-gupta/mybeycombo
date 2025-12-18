@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
     materials: {}
 }
 
-export function Libra(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
+export function CW_Libra(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/libra.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Serpent(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
+export function CW_Serpent(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/serpent.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

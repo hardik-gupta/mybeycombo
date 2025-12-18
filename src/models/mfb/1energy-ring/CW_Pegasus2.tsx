@@ -10,20 +10,20 @@ import type { JSX } from 'react'
 
 type GLTFResult = GLTF & {
   nodes: {
-    ray: THREE.Mesh
+    pegasus2: THREE.Mesh
   }
   materials: {}
 }
 
-export function Ray(props: JSX.IntrinsicElements['group'] & {children: React.ReactNode}) {
-  const { nodes } = useGLTF('models/mfb/2fusion-wheel/ray.glb') as unknown as GLTFResult
+export function CW_Pegasus2(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode}) {
+  const { nodes } = useGLTF('models/mfb/1energy-ring/pegasus2.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.ray.geometry} material={nodes.ray.material}>
+      <mesh geometry={nodes.pegasus2.geometry} material={nodes.pegasus2.material}>
         {props.children}
       </mesh>
     </group>
   )
 }
 
-useGLTF.preload('models/mfb/2fusion-wheel/ray.glb')
+useGLTF.preload('models/mfb/1energy-ring/pegasus2.glb')

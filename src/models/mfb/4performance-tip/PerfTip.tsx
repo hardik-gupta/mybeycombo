@@ -6,9 +6,10 @@ import { folder, useControls } from "leva";
 export const PerfTip = forwardRef(function DynamicPerfTip(props: {position?: [number, number, number]}, ref){
     const { colorPt1, colorPt2, clearPt, performanceTip, transparency, clearCoat, resolution } = useControls({
         "Performance Tip": folder({
-            clearPt: {
-                value: false,
-                label: "Clear?",
+            performanceTip: {
+                value: "ES",
+                options: Object.keys(PERFORMANCE_TIPS),
+                label: 'Tip'
             },
             colorPt1: {
                 value: "orange",
@@ -17,15 +18,13 @@ export const PerfTip = forwardRef(function DynamicPerfTip(props: {position?: [nu
             colorPt2: {
                 value: "orange",
                 label: "Secondary",
-                render: (get) => {
-                    const tip = get('Performance Tip.performanceTip');
-                    return tip === 'ES' || tip === "CS" || tip === "R2F";
+                render: (): boolean => {
+                    return PERFORMANCE_TIPS[performanceTip as keyof typeof PERFORMANCE_TIPS].hasSecondColor
                 }
             },
-            performanceTip: {
-                value: "ES",
-                options: Object.keys(PERFORMANCE_TIPS),
-                label: 'Tip'
+            clearPt: {
+                value: false,
+                label: "Clear?",
             },
             transparency: {
                 value: 0.2,
@@ -56,21 +55,21 @@ export const PerfTip = forwardRef(function DynamicPerfTip(props: {position?: [nu
             },
         })
     })
-    const PerformanceTip = PERFORMANCE_TIPS[performanceTip as keyof typeof PERFORMANCE_TIPS]
+    const PerformanceTip = PERFORMANCE_TIPS[performanceTip as keyof typeof PERFORMANCE_TIPS].component
     return (
-        <PerformanceTip {...props} 
-            ref={ref} 
+        <PerformanceTip {...props}
+            ref={ref}
             position={props.position}
             secondary={
-                clearPt ? 
-                <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorPt2}/> : 
-                <meshStandardMaterial roughness={clearCoat} color={colorPt2}/>
+                clearPt ?
+                    <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorPt2} /> :
+                    <meshStandardMaterial roughness={clearCoat} color={colorPt2} />
             }
         >
             {
-                clearPt ? 
-                <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorPt1}/> : 
-                <meshStandardMaterial roughness={clearCoat} color={colorPt1}/>
+                clearPt ?
+                    <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={clearCoat} color={colorPt1} /> :
+                    <meshStandardMaterial roughness={clearCoat} color={colorPt1} />
             }
         </PerformanceTip>
     )

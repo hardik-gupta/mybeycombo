@@ -4,7 +4,7 @@
 */
 
 import * as THREE from 'three'
-import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { JSX } from 'react'
 
@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Eagle(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
+export function CW_Eagle(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/eagle.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>

@@ -14,7 +14,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Byxis(props: JSX.IntrinsicElements['group']& { children?: React.ReactNode }) {
+export function CW_Byxis(props: JSX.IntrinsicElements['group']& { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/1energy-ring/byxis.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

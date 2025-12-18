@@ -1,6 +1,6 @@
 
 import * as THREE from 'three'
-import React, { useRef, type JSX } from 'react'
+import { type JSX } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 
@@ -11,7 +11,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Gravity(props: JSX.IntrinsicElements['group']) {
+export function MW_Gravity(props: JSX.IntrinsicElements['group']) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/gravity.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

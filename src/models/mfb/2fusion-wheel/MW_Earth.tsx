@@ -15,7 +15,7 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function Earth(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
+export function MW_Earth(props: JSX.IntrinsicElements['group'] & { children?: React.ReactNode }) {
   const { nodes } = useGLTF('/models/mfb/2fusion-wheel/earth.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
