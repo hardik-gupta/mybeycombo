@@ -16,8 +16,9 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export function TR_SW145(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode}) {
+export function TR_SW145(props: JSX.IntrinsicElements['group'] & {children?: React.ReactNode, secondary?: React.ReactNode, mode?: string}) {
   const { nodes } = useGLTF('/models/mfb/3spin-track/TR_SW145.glb') as unknown as GLTFResult
+  const wingRot: [number, number, number] = props.mode === "Attack" ? [Math.PI,0,0] : [0,0,0];
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -31,6 +32,7 @@ export function TR_SW145(props: JSX.IntrinsicElements['group'] & {children?: Rea
           geometry={nodes.wing.geometry}
           material={nodes.wing.material}
           position={[0, -8.038, 0]}
+          rotation={wingRot}
           userData={{ name: 'wing' }}
         >
           {props.secondary}
