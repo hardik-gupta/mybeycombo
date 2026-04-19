@@ -8,10 +8,12 @@ import { SpinTrack } from "./models/mfb/3spin-track/SpinTrack";
 import { FusionWheel } from "./models/mfb/2fusion-wheel/FusionWheel";
 import { EnergyRing } from "./models/mfb/1energy-ring/EnergyRing";
 import { radToDeg } from "three/src/math/MathUtils.js";
+import {DG} from "./models/Dg";
+import { DeathGargoyl } from "./models/death_gargoyl";
 
 // import { DG } from "./models/Dg";
 
-const Experience = () => {
+const Experience = ({texture} : {texture: THREE.CanvasTexture | null}) => {
     const boltRef = useRef(null);
     const tipRef = useRef(null);
 
@@ -90,7 +92,9 @@ const Experience = () => {
             position={[position.x, position.y, position.z]} rotation={[rotation.x, rotation.y, rotation.z]} 
             // castShadow
         >
-            <FaceBolt ref={boltRef} position={[0, posBolt, 0]}>
+            {/* <DG/> */}
+            <DeathGargoyl texture={texture}/>
+            {/* <FaceBolt ref={boltRef} position={[0, posBolt, 0]}>
                 {
                     clearFb ?
                         <MeshTransmissionMaterial samples={1} resolution={resolution} transmission={transparency} roughness={1 - clearCoat} color={colorFb} /> :
@@ -100,7 +104,7 @@ const Experience = () => {
             <EnergyRing posY={posRing} />
             <FusionWheel posY={posWheel} setPosBolt={setPosBolt} setPosRing={setPosRing} />
             <SpinTrack setPosWheel={setPosWheel} setPosTip={setPosTip} />
-            <PerfTip ref={tipRef} position={[0, posTip, 0]} />
+            <PerfTip ref={tipRef} position={[0, posTip, 0]} /> */}
         </group>
     )
 };
