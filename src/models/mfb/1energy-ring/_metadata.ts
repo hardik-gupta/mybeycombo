@@ -5,6 +5,7 @@ import { CW_Serpent } from "./CW_Serpent";
 import { CW_Striker } from "./CW_Striker";
 import { CW_Pegasus2 } from "./CW_Pegasus2";
 import { CW_Kerbecs } from "./CW_Kerbecs";
+import { CW_Lacerta } from "./CW_Lacerta";
 
 /**
  * Geometry
@@ -21,4 +22,5 @@ export const ENERGY_RING = {
     Striker: CW_Striker,
     Pegasus2: CW_Pegasus2,
     Kerbecs: CW_Kerbecs,
+    Lacerta: CW_Lacerta,
 } as const;
